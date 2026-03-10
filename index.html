@@ -684,7 +684,7 @@ body {
       box-shadow: 0 15px 40px rgba(0,0,0,0.7);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 10;
-      border: 3px solid #8e2de2;
+      border: 3px solid var(--azul-navy);
     }
 
     .timeline-item span {
@@ -699,7 +699,7 @@ body {
     .timeline-item:active .timeline-icon {   /* ← mejor soporte touch */
       transform: translateY(-12px) scale(1.15);
       border-color: #ff6bdb;
-      box-shadow: 0 10px 30px rgba(142, 45, 226, 0.5);
+      box-shadow: 0 10px 30px var(--azul-navy);
     }
 
     .timeline-item:hover .timeline-preview,
@@ -723,7 +723,7 @@ body {
       transform: translateX(-50%);
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-top: 10px solid #8e2de2;
+      border-top: 10px solid var(--azul-navy);
     }
 
     /* ────────────────────────────────────────
@@ -1410,6 +1410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 

@@ -630,7 +630,7 @@ body {
       left: 0;
       right: 0;
       height: 6px;
-      background: linear-gradient(to right, #4a00e0, #8e2de2);
+      background: linear-gradient(to right, var(--azul-medio), var(--celeste-suave));
       transform: translateY(-50%);
       border-radius: 3px;
     }
@@ -653,7 +653,7 @@ body {
       width: 35px;
       height: 35px;
       background: #222;
-      border: 1px solid #8e2de2;
+      border: 1px solid var(--gris-azulado);
       border-radius: 50%;
       margin: 0 auto 5px;
       overflow: hidden;
@@ -684,7 +684,7 @@ body {
       box-shadow: 0 15px 40px rgba(0,0,0,0.7);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 10;
-      border: 3px solid var(--azul-navy);
+      border: 3px solid var(--celeste-suave);
     }
 
     .timeline-item span {
@@ -699,7 +699,7 @@ body {
     .timeline-item:active .timeline-icon {   /* ← mejor soporte touch */
       transform: translateY(-12px) scale(1.15);
       border-color: #ff6bdb;
-      box-shadow: 0 10px 30px var(--azul-navy);
+      box-shadow: 0 10px 30px var(--celeste-suave);
     }
 
     .timeline-item:hover .timeline-preview,
@@ -723,7 +723,7 @@ body {
       transform: translateX(-50%);
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-top: 10px solid var(--azul-navy);
+      border-top: 10px solid var(--celeste-suave);
     }
 
     /* ────────────────────────────────────────
@@ -1410,6 +1410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 

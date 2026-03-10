@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Ismael & Andrea - Nos Casamos</title>
-  
-  <meta property="og:title" content="Ismael & Andrea - Nos Casamos">
-  <meta property="og:image" content="https://siciliano-franco.github.io/Boda-Andrea-Ismael/Title2.png">
+  <!-- Open Graph (lo más importante - lo usan casi todas las redes) -->
+  <meta property="og:title" content="Ismael & Andrea">
+  <meta property="og:image" content="https://siciliano-franco.github.io/Boda-Andrea-Ismael/Title.png">
   <meta property="og:url" content="https://siciliano-franco.github.io/Boda-Andrea-Ismael/">
   <meta property="og:type" content="website">
 
@@ -615,6 +615,193 @@ body {
     margin-top: -130px;         /* menos tapado en celular (ajusta según veas) */
   }
 }
+
+
+.timeline-container {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(to right, #4a00e0, #8e2de2);
+      transform: translateY(-50%);
+      border-radius: 3px;
+    }
+
+    .timeline-items {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      gap: 10px;               /* más pequeño en móvil está bien */
+    }
+
+    .timeline-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .timeline-icon {
+      width: 35px;
+      height: 35px;
+      background: #222;
+      border: 1px solid #8e2de2;
+      border-radius: 50%;
+      margin: 0 auto 5px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .timeline-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .timeline-preview {
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.1);
+      width: 260px;               /* un poco más pequeño en general */
+      height: 320px;              /* proporción ajustable */
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+      border: 3px solid #8e2de2;
+    }
+
+    .timeline-item span {
+      display: block;
+      margin-top: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #d0bfff;
+    }
+
+    .timeline-item:hover .timeline-icon,
+    .timeline-item:active .timeline-icon {   /* ← mejor soporte touch */
+      transform: translateY(-12px) scale(1.15);
+      border-color: #ff6bdb;
+      box-shadow: 0 10px 30px rgba(142, 45, 226, 0.5);
+    }
+
+    .timeline-item:hover .timeline-preview,
+    .timeline-item:active .timeline-preview {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      bottom: 110%;
+    }
+
+    .timeline-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .timeline-preview::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #8e2de2;
+    }
+
+    /* ────────────────────────────────────────
+       FIX PARA MÓVILES - lo más importante
+    ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+  .timeline-preview {
+    width: 260px;           /* o el que más te guste, 280px estaba bien */
+    height: 180px;
+    max-width: 88vw;        /* un poco más holgado pero seguro */
+    box-sizing: border-box;
+  }
+
+  /* Para TODOS los previews en móvil: posicionamiento inteligente */
+  .timeline-item .timeline-preview {
+    left: 50% !important;                /* volvemos a forzar centro por defecto */
+    transform: translateX(-50%) scale(0.1) !important;
+    right: auto !important;              /* limpiamos valores previos */
+  }
+
+  .timeline-item:hover .timeline-preview,
+  .timeline-item:active .timeline-preview {
+    transform: translateX(-50%) scale(1) !important;
+  }
+
+  /* Ahora ajustamos los que están cerca de los bordes */
+  /* Izquierda - primer item */
+  .timeline-item:first-child .timeline-preview {
+    left: 0 !important;
+    transform: translateX(0) scale(0.1) !important;
+  }
+  .timeline-item:first-child:hover .timeline-preview,
+  .timeline-item:first-child:active .timeline-preview {
+    transform: translateX(0) scale(1) !important;
+  }
+
+  /* Izquierda - segundo item (el que más se corta en tu caso) */
+  .timeline-item:nth-child(2) .timeline-preview {
+    left: 10% !important;   /* o 15px, 20px, prueba valores */
+    transform: translateX(0) scale(0.1) !important;
+  }
+  .timeline-item:nth-child(2):hover .timeline-preview,
+  .timeline-item:nth-child(2):active .timeline-preview {
+    transform: translateX(0) scale(1) !important;
+  }
+
+  /* Derecha - último item */
+  .timeline-item:last-child .timeline-preview {
+    left: auto !important;
+    right: 0 !important;
+    transform: translateX(0) scale(0.1) !important;
+  }
+  .timeline-item:last-child:hover .timeline-preview,
+  .timeline-item:last-child:active .timeline-preview {
+    transform: translateX(0) scale(1) !important;
+  }
+
+  /* Derecha - penúltimo item */
+  .timeline-item:nth-last-child(2) .timeline-preview {
+    left: auto !important;
+    right: 10% !important;   /* simétrico al segundo */
+    transform: translateX(0) scale(0.1) !important;
+  }
+  .timeline-item:nth-last-child(2):hover .timeline-preview,
+  .timeline-item:nth-last-child(2):active .timeline-preview {
+    transform: translateX(0) scale(1) !important;
+  }
+
+  /* Los del medio quedan centrados normalmente (ya lo manejamos arriba) */
+}
+
+    /* Para pantallas muy pequeñas (ej. iPhone SE, etc) */
+    @media (max-width: 480px) {
+      .timeline-preview {
+        width: 200px;
+        height: 160px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -632,14 +819,14 @@ body {
    <!-- Imagen Principal - ANCHO COMPLETO + REDONDEADA -->
 <section class="section full-width-hero">
   <div class="hero-container">
-    <img src="img/toma-principal-2.png" alt="Andrea & Ismael" class="hero-image">
+    <img src="img/toma-principal-3.png" alt="Andrea & Ismael" class="hero-image">
     
   </div>
 </section>
 
   <h1 style="font-family: 'Great Vibes', cursive; font-size: 4.0rem; color: var(--azul-medio); margin: 0; line-height: 0.75; ">Ismael </h1>
 
-  <h1 style="font-family: 'Great Vibes', cursive; font-size: 4.0rem; color: var(--azul-medio); text-align: center; margin: -0.6rem 0.3rem 0; line-height: 0.7; transform: translateY(-0.1em);"> & </h1>
+  <h1 style="font-family: 'Great Vibes', cursive; font-size: 4.0rem; color: var(--azul-medio); text-align: center; margin: -0.6rem 0.3rem 0; line-height: 0.7; transform: translateY(-0.0em);"> & </h1>
 
   <h1 style="font-family: 'Great Vibes', cursive; font-size: 4.0rem; color: var(--azul-medio); text-align:right; margin: -0.6rem 0 0; line-height: 0.75; "> Andrea</h1>
 
@@ -678,7 +865,7 @@ body {
       <p style="text-align: center; font-style: italic; color: var(--azul-navy);">
         <small>Tenemos el gran honor de invitarte <br> a uno de los días más especiales de nuetras vidas. <br>
            ¡La celebración de nuestro matrimonio! <br> 
-           un encuentro de amor, fé y alegría que permanecerá por siempre en nuestro corazón</small>
+           Un encuentro de amor, fé y alegría que permanecerá por siempre en nuestro corazón</small>
       </p>
     </section>
     <section class="section" style="text-align: center; padding: 6px 0;">
@@ -698,7 +885,7 @@ body {
     <!-- Cuadro Beige 1 -->
     <section class="section full-width-hero">
   <div class="hero-container">
-    <img src="img/toma-principal-3.png" alt="Andrea & Ismael" class="hero-image">
+    <img src="img/toma-principal-2.png" alt="Andrea & Ismael" class="hero-image">
     
   </div>
 </section>
@@ -739,7 +926,7 @@ body {
       <div class="image-date-overlay">
         <img src="img/dresscode.png" alt="Nos Casamos">
         <div class="overlay-drescode-text">
-          <div class="date">Por favor, ayudanos a mantener la magia del momento evitando colores <strong>Blanco, Rojo y Beige</strong> en tu atuendo. <br> ¡Gracias por celebrar con nostros!</div>
+          <div class="date">Por favor, ayudanos a mantener la magia del momento evitando colores <strong>Blanco, Rojo y Beige</strong> en tu atuendo. <br> ¡Gracias por celebrar con nosotros!</div>
         </div>
       </div>
     </section>
@@ -793,7 +980,7 @@ body {
         <div class="event">
           <h4>17:30 hs</h4>
           <p style=" font-style: italic; color: var(--azul-medio);">
-              <small>Degustación de Cóctel</small>
+              <small>Retirada de los esposos</small>
             </p>
         </div>
         <div class="event">
@@ -843,6 +1030,20 @@ body {
         <img src="img/toma4.png">
         <img src="img/toma4.png">
         <img src="img/toma11.png">
+        <img src="img/toma26.png">
+        <img src="img/toma25.png">
+        <img src="img/toma45.png">
+        <img src="img/toma43.png">
+        <img src="img/toma40.png">
+        <img src="img/toma37.png">
+        <img src="img/toma36.png">
+        <img src="img/toma35.png">
+        <img src="img/toma32.png">
+        <img src="img/toma29.png">
+        <img src="img/toma28.png">
+        <img src="img/toma12.png">
+        <img src="img/toma13.png">
+        <img src="img/toma16.png">
         <button class="carousel-btn prev" onclick="prevSlide()"> < </button>
         <button class="carousel-btn next" onclick="nextSlide()"> > </button>
       </div>
@@ -852,7 +1053,121 @@ body {
     <section class="section">
       <img src="https://images.unsplash.com/photo-1515934751635-c81c6f98491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" style="max-width:100%; border-radius:16px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
     </section>-->
+<section class="section">
+      <p style="text-align: center; font-style: italic; color: var(--azul-navy);">
+        Nuestra historia <br>Desde 2019… hasta para siempre</p>
+        <small>En 2019 nos encontramos por primera vez.
+                Una mirada, un latido y, muy en el fondo, lo supimos:
+                éramos el uno para el otro. <br>Desde ese día:
+                primeras citas con mariposas,
+                noches sin fin hablando,
+                viajes, risas, abrazos que curan todo,
+                sueños compartidos y un amor que crece cada día. <br> Hoy elegimos decirlo frente a todos:
+                lo que empezó como un presentimiento en 2019,
+                ahora es promesa eterna.
+                
+</small>
+<p style="text-align: center; font-style: italic; color: var(--azul-navy);">De 2019 a ∞ <br> Tú y yo. Siempre.</p>
+      
+    </section>
 
+<div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-items">
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma44.png" alt="2018">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma44.png" alt="mini 2019">
+        </div>
+        <small> <br>2019 <br></small>
+        <!--<small>Nuestra Primera Cita ♥</small>-->
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma49.png" alt="2020">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma49.png" alt="mini 2020">
+        </div>
+        <small> <br>2020 <br></small>
+        <!--<small>El año que nos enseñó que nuestro amor es inquebrantable.</small> -->
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma23.png" alt="2022">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma23.png" alt="mini 2022">
+        </div>
+        <small> <br>2021 <br></small>
+        <small></small>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma22.png" alt="2025">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma22.png" alt="mini 2025">
+        </div>
+        <small> <br>2022 <br></small>
+        <small></small>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma18.png" alt="2025">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma18.png" alt="mini 2025">
+        </div>
+        <small> <br>2023 <br></small>
+        <small></small>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma17.png" alt="2025">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma17.png" alt="mini 2025">
+        </div>
+        <small> <br>2024 <br></small>
+        <small></small>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma16.png" alt="2025">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma16.png" alt="mini 2025">
+        </div>
+        <small> <br>2025 <br></small>
+        <small></small>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-preview">
+          <img src="img/toma-principal-2.png" alt="2025">
+        </div>
+        <div class="timeline-icon">
+          <img src="img/toma-principal-2.png" alt="mini 2025">
+        </div>
+        <small> <br>2026 <br></small>
+        <small></small>
+      </div>
+
+      
+
+    </div>
+  </div>
     
 
     <!-- Flores Finales / Pie de página -->
@@ -900,7 +1215,7 @@ body {
 
       <form id="rsvpForm" style="display:flex; flex-direction:column; gap:14px;">
         <input type="text" id="nombre"  placeholder="Nombre completo" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
-        <input type="Telefono" id="email" placeholder="Telefono" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
+        <input type="tel" id="telefono" placeholder="Telefono" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
         <select id="personas" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
           <option value="">Asistiremos...</option>
           <option>1 persona</option>
@@ -911,7 +1226,7 @@ body {
         </select>
         <p style="text-align: center; font-style: italic; color: var(--azul-navy);">
         <small> Recuerda respetar el límite máximo de asignaciones establecido al inicio, ¡gracias! </small></p>
-        <button type="submit" id="submitBtn" onclick="alert('¡Confirmado! Te esperamos con amor!'); closeModal('rsvpModal');" style="background:var(--azul-navy); color:white; padding:14px; border:none; border-radius:50px; cursor:pointer; margin-top:12px; font-size:1.1rem;">
+        <button type="submit" id="submitBtn"  style="background:var(--azul-navy); color:white; padding:14px; border:none; border-radius:50px; cursor:pointer; margin-top:12px; font-size:1.1rem;">
           Enviar Confirmación
         </button>
       </form>
@@ -923,6 +1238,15 @@ body {
     let musicBtn = document.getElementById('music-control');
 
     
+  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // evita que recargue la página
+    alert('¡Confirmado! Te esperamos con amor!');
+    closeModal('rsvpModal');
+
+    // Opcional: limpiar el formulario
+    this.reset();
+  });
+
     function startInvitation() {
       document.getElementById('intro').style.opacity = '0';
       setTimeout(() => {
@@ -976,7 +1300,7 @@ window.onclick = function(event) {
     function openWaze() {
   /*document.getElementById('WazeModal').style.display = 'flex';*/
 
-  window.open("https://waze.com/ul/hd42nzqm82", "_blank");
+  window.open("https://ul.waze.com/ul?venue_id=177143947.1771636076.12909991&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location", "_blank");
 }
 
 function closeWaze() {
@@ -1018,7 +1342,7 @@ function closeModal(id) {
 
     // CUENTA REGRESIVA: 21 NOV 2026 - 18:00 hs
     function startCountdown() {
-      const wedding = new Date('2026-04-11T18:00:00').getTime();
+      const wedding = new Date('2026-03-09T08:00:00').getTime();
       const timer = setInterval(() => {
         const now = new Date().getTime();
         const diff = wedding - now;
@@ -1084,8 +1408,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   </script>
 </body>
-
 </html>
-
-
-

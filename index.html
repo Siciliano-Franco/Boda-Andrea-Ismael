@@ -1208,25 +1208,24 @@ body {
   </div>
 
   <!-- MODAL RSVP -->
-  <div id="rsvpModal" class="modal">
+    <div id="rsvpModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('rsvpModal')">×</span>
       <h3 style="text-align:center; margin-bottom:25px; color:var(--azul-navy); font-family: 'Great Vibes', cursive; font-size: 1.9rem;">Confirma tu Asistencia</h3>
 
       <form id="rsvpForm" style="display:flex; flex-direction:column; gap:14px;">
         <input type="text" id="nombre"  placeholder="Nombre completo" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
-        <input type="tel" id="telefono" placeholder="Telefono" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
+        <input type="Telefono" id="email" placeholder="Telefono" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
         <select id="personas" required style="padding:12px; border:1px solid #ddd; border-radius:10px; font-family:inherit;">
           <option value="">Asistiremos...</option>
           <option>1 persona</option>
           <option>2 personas</option>
           <option>3 personas</option>
           <option>4 personas</option>
-          <option>5 personas</option>
         </select>
         <p style="text-align: center; font-style: italic; color: var(--azul-navy);">
         <small> Recuerda respetar el límite máximo de asignaciones establecido al inicio, ¡gracias! </small></p>
-        <button type="submit" id="submitBtn"  style="background:var(--azul-navy); color:white; padding:14px; border:none; border-radius:50px; cursor:pointer; margin-top:12px; font-size:1.1rem;">
+        <button type="submit" id="submitBtn" onclick="alert('¡Confirmado! Te esperamos con amor!'); closeModal('rsvpModal');" style="background:var(--azul-navy); color:white; padding:14px; border:none; border-radius:50px; cursor:pointer; margin-top:12px; font-size:1.1rem;">
           Enviar Confirmación
         </button>
       </form>
@@ -1408,4 +1407,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   </script>
 </body>
+
 </html>
